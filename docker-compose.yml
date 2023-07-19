@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: safezone-backend-service
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '${APP_PORT}:${APP_PORT}'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
+  db:
+    container_name: safezone-db
+    image: 'postgres:14.1-alpine'
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - '${DB_PORT}:${DB_PORT}'
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
