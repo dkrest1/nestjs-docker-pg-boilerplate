@@ -1,5 +1,5 @@
 # Use the official Node.js image as the base image
-FROM node:18
+FROM node:alpine
 
 # Set the working directory
 WORKDIR /app
@@ -13,8 +13,14 @@ RUN npm install
 # Install nest globally
 RUN npm install -g @nestjs/cli
 
+# Install prisma globally
+RUN npm install -g prisma
+
 # Copy the application source code into the working directory
 COPY . .
+
+# Generate the Prisma Client during the Docker image build
+RUN npx prisma generate --schema ./prisma/schema.prisma
 
 # Build the application
 RUN npm run build

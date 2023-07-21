@@ -2,10 +2,10 @@ version: '3.8'
 
 services:
   app:
-    container_name: safezone-backend-service
+    container_name: app-service
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     ports:
       - '${APP_PORT}:${APP_PORT}'
     volumes:
@@ -14,7 +14,7 @@ services:
     depends_on:
       - db
   db:
-    container_name: safezone-db
+    container_name: app-db-service
     image: 'postgres:14.1-alpine'
     environment:
       POSTGRES_USER: ${DB_USERNAME}
