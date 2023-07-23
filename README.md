@@ -5,7 +5,7 @@ This is a project that is comfigured with Prisma ORM, PostgreSQL, Docker and Doc
 ## Features
 
 - NestJS Framework
-- Prisma
+- TypeORM
 - Docker and Docker compose for Development
 - Environment Based Configuration
 
